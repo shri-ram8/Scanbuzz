@@ -28,20 +28,16 @@ Thumbs.db
 *.ipynb
 
 # ─────────────────────────────────────────────
-# TRAINED MODELS (CRITICAL 🚨)
+# 🚨 BERT MODEL (IGNORE — hosted on HuggingFace)
 # ─────────────────────────────────────────────
-*.pkl
 *.safetensors
 bert_fakenews_model/
 model.safetensors
 
 # ─────────────────────────────────────────────
-# VECTOR + ML FILES
+# ✅ ML MODELS (KEEP — required for prediction)
 # ─────────────────────────────────────────────
-vec_*.pkl
-scaler.pkl
-models.pkl
-ensemble.pkl
+# DO NOT IGNORE .pkl files
 
 # ─────────────────────────────────────────────
 # OUTPUT FILES
