@@ -7,5 +7,5 @@ services:
     envVars:
       - key: PORT
         value: 8080
-    healthCheckPath: /api/health
+    healthCheckPath: /health
     autoDeploy: true
