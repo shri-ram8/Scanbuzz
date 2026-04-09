@@ -258,14 +258,14 @@ function renderResult(d) {
     : `✗ Fake — TruthScan`;
 
   /* Mini verdict bar */
-  showMiniVerdict(isReal, d.confidence);
+  showMiniVerdict(isReal);
 
   /* Verdict strip */
   const strip = $('rcVerdict');
   strip.className = 'rc-verdict ' + (isReal ? 'vr-real' : 'vr-fake');
   $('rcvIcon').textContent  = isReal ? '✓' : '✗';
   $('rcvLabel').textContent = isReal ? 'Real News' : 'Fake News';
-  $('rcvMeta').textContent  = `${d.confidence}% confidence · ${d.word_count} words · via ${d.primary || 'BERT'}`;
+  $('rcvMeta').textContent  = `${d.word_count} words · via BERT`;
   $('rcvBadge').textContent = isReal ? 'Verified' : 'Suspicious';
 
   /* Gauge */
@@ -351,14 +351,12 @@ function renderResult(d) {
     </div>`;
   }).join('');
 
-  /* Meta chips */
-  const vc = isReal ? 'rv' : 'fv';
+  /* Meta chips — no Confidence chip */
   $('rcMeta').innerHTML = [
-    ['Words',      d.word_count,      ''],
-    ['Primary',    d.primary || 'BERT', ''],
-    ['Real',       d.real_pct + '%',   'rv'],
-    ['Fake',       d.fake_pct + '%',   'fv'],
-    ['Confidence', d.confidence + '%', vc],
+    ['Words',   d.word_count,      ''],
+    ['Primary', 'BERT',            ''],
+    ['Real',    d.real_pct + '%',  'rv'],
+    ['Fake',    d.fake_pct + '%',  'fv'],
   ].map(([k, v, cls]) => `
     <div class="rc-chip">
       <span class="rc-chip-k">${esc(k)}</span>
@@ -367,11 +365,11 @@ function renderResult(d) {
 }
 
 /* ── Mini verdict bar ── */
-function showMiniVerdict(isReal, conf) {
+function showMiniVerdict(isReal) {
   miniVerdict.className = 'mini-verdict ' + (isReal ? 'mv-real' : 'mv-fake');
   $('mvIcon').textContent  = isReal ? '✓' : '✗';
   $('mvLabel').textContent = isReal ? 'Real News' : 'Fake News';
-  $('mvConf').textContent  = `${conf}% confidence`;
+  $('mvConf').textContent  = '';
   miniVerdict.classList.remove('hidden');
   mainHeader.classList.add('pushed');
 
